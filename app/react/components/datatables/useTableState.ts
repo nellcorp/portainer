@@ -15,6 +15,11 @@ class Wrapper<T extends BasicTableSettings> {
   }
 }
 
+export type TableState<TSettings extends BasicTableSettings> = TSettings & {
+  setSearch: (search: string) => void;
+  search: string;
+};
+
 export function useTableState<
   TSettings extends BasicTableSettings = BasicTableSettings
 >(store: ReturnType<Wrapper<TSettings>['wrapped']>, storageKey: string) {

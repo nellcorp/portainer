@@ -12,6 +12,7 @@ import {
   getFacetedMinMaxValues,
   getExpandedRowModel,
   TableOptions,
+  TableMeta,
 } from '@tanstack/react-table';
 import { ReactNode, useMemo } from 'react';
 import clsx from 'clsx';
@@ -58,6 +59,7 @@ export interface Props<
   renderRow?(row: Row<D>, highlightedItemId?: string): ReactNode;
   getRowCanExpand?(row: Row<D>): boolean;
   noWidget?: boolean;
+  meta?: TableMeta<D>;
 }
 
 export function Datatable<D extends Record<string, unknown>>({
@@ -82,6 +84,7 @@ export function Datatable<D extends Record<string, unknown>>({
   highlightedItemId,
   noWidget,
   getRowCanExpand,
+  meta,
 }: Props<D>) {
   const isServerSidePagination = typeof pageCount !== 'undefined';
   const enableRowSelection = getIsSelectionEnabled(
@@ -124,6 +127,7 @@ export function Datatable<D extends Record<string, unknown>>({
     getExpandedRowModel: getExpandedRowModel(),
     getRowCanExpand,
     ...(isServerSidePagination ? { manualPagination: true, pageCount } : {}),
+    meta,
   });
 
   const tableState = tableInstance.getState();

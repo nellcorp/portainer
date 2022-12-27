@@ -16,6 +16,7 @@ import { GpusList } from '@/react/docker/host/SetupView/GpusList';
 import { GpusInsights } from '@/react/docker/host/SetupView/GpusInsights';
 import { InsightsBox } from '@/react/components/InsightsBox';
 import { BetaAlert } from '@/react/portainer/environments/update-schedules/common/BetaAlert';
+import { AgentHostBrowser } from '@/react/docker/host/BrowseView/AgentHostBrowser';
 
 export const componentsModule = angular
   .module('portainer.docker.react.components', [])
@@ -66,4 +67,18 @@ export const componentsModule = angular
     ])
   )
   .component('betaAlert', r2a(BetaAlert, ['className', 'message', 'isHtml']))
+  .component(
+    'agentHostBrowserReact',
+    r2a(withUIRouter(withCurrentUser(AgentHostBrowser)), [
+      'dataset',
+      'isRoot',
+      'onBrowse',
+      'onDelete',
+      'onDownload',
+      'onFileSelectedForUpload',
+      'onGoToParent',
+      'onRename',
+      'relativePath',
+    ])
+  )
   .component('gpusInsights', r2a(GpusInsights, [])).name;
