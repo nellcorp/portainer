@@ -17,6 +17,7 @@ import { GpusInsights } from '@/react/docker/host/SetupView/GpusInsights';
 import { InsightsBox } from '@/react/components/InsightsBox';
 import { BetaAlert } from '@/react/portainer/environments/update-schedules/common/BetaAlert';
 import { AgentHostBrowser } from '@/react/docker/host/BrowseView/AgentHostBrowser';
+import { AgentVolumeBrowser } from '@/react/docker/volumes/BrowseView/AgentVolumeBrowser';
 
 export const componentsModule = angular
   .module('portainer.docker.react.components', [])
@@ -67,6 +68,7 @@ export const componentsModule = angular
     ])
   )
   .component('betaAlert', r2a(BetaAlert, ['className', 'message', 'isHtml']))
+  .component('gpusInsights', r2a(GpusInsights, []))
   .component(
     'agentHostBrowserReact',
     r2a(withUIRouter(withCurrentUser(AgentHostBrowser)), [
@@ -81,4 +83,18 @@ export const componentsModule = angular
       'relativePath',
     ])
   )
-  .component('gpusInsights', r2a(GpusInsights, [])).name;
+  .component(
+    'agentVolumeBrowserReact',
+    r2a(withUIRouter(withCurrentUser(AgentVolumeBrowser)), [
+      'dataset',
+      'isRoot',
+      'isUploadAllowed',
+      'onBrowse',
+      'onDelete',
+      'onDownload',
+      'onFileSelectedForUpload',
+      'onGoToParent',
+      'onRename',
+      'relativePath',
+    ])
+  ).name;
