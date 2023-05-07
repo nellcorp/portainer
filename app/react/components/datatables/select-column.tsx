@@ -21,6 +21,7 @@ export function createSelectColumn<T>(): ColumnDef<T> {
         checked={row.getIsSelected()}
         indeterminate={row.getIsSomeSelected()}
         onChange={row.getToggleSelectedHandler()}
+        disabled={!row.getCanSelect()}
         onClick={(e) => {
           if (e.shiftKey) {
             const { rows, rowsById } = table.getRowModel();
