@@ -115,10 +115,10 @@ func setupHandler(t *testing.T) (*Handler, func(), error) {
 		security.NewRequestBouncer(store, jwtService, apiKeyService),
 		store,
 		fs,
-		chisel.NewService(store, shutdownCtx),
+		chisel.NewService(store, shutdownCtx, nil),
 	)
 
-	handler.ReverseTunnelService = chisel.NewService(store, shutdownCtx)
+	handler.ReverseTunnelService = chisel.NewService(store, shutdownCtx, nil)
 
 	return handler, teardown, nil
 }
