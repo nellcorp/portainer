@@ -21,7 +21,7 @@ import (
 // @produce json
 // @param id path int true "environment(endpoint) Id"
 // @param stackId path int true "EdgeStack Id"
-// @success 200 {object} configResponse
+// @success 200 {object} edge.StackPayload
 // @failure 500
 // @failure 400
 // @failure 404
