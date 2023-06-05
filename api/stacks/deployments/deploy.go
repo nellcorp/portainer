@@ -86,9 +86,9 @@ func RedeployWhenChanged(stackID portainer.StackID, deployer StackDeployer, data
 	case portainer.DockerComposeStack:
 
 		if stackutils.IsGitStack(stack) {
-			err = deployer.DeployRemoteComposeStack(stack, endpoint, registries, true, false)
+			err = deployer.DeployRemoteComposeStack(stack, endpoint, registries, false, false)
 		} else {
-			err = deployer.DeployComposeStack(stack, endpoint, registries, true, false)
+			err = deployer.DeployComposeStack(stack, endpoint, registries, false, false)
 		}
 
 		if err != nil {

@@ -30,7 +30,10 @@ build-server: init-dist ## Build the server binary
 	./build/build_binary.sh "$(PLATFORM)" "$(ARCH)"
 
 build-image: build-all ## Build the Portainer image locally
-	docker buildx build --load -t portainerci/portainer:$(TAG) -f build/linux/Dockerfile .
+	docker buildx build --load -t figassis/portainer:$(TAG) -f build/linux/Dockerfile .
+
+publish: build-image
+	docker build --rm -t figassis/portainer:latest . && docker push figassis/portainer:latest
 
 build-storybook: ## Build and serve the storybook files
 	yarn storybook:build

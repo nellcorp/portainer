@@ -56,6 +56,7 @@ func (d *stackDeployer) DeployRemoteComposeStack(stack *portainer.Stack, endpoin
 
 	return d.remoteStack(stack, endpoint, OperationDeploy, unpackerCmdBuilderOptions{
 		registries: registries,
+		pullImage:  true,
 	})
 }
 
